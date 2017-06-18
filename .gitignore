@@ -1,0 +1,18 @@
+# Project files
+docs/docs.json
+docs/site
+
+# Python files
+.cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Editor files
+*~
+.\#*
+\#*\#
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]

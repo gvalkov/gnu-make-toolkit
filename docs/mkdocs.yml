@@ -1,0 +1,9 @@
+site_name: GNU Make Toolkit
+site_author: Georgi Valkov
+site_description: GNU Make Toolkit documentation
+pages:
+  - Home: index.md
+theme: readthedocs
+markdown_extensions:
+  - toc:
+      permalink: True
