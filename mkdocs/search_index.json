@@ -1,0 +1,134 @@
+{
+    "docs": [
+        {
+            "location": "/",
+            "text": "Introduction\n\u00b6\n\n\nThe GNU Make Toolkit is a library of utility functions for \nGNU Make\n\n\n4.0\n or newer. It provides useful functions for:\n\n\n\n\nString manipulation\n\n\nList manipulation\n\n\n\n\nMost functions are implemented using GNU Make's Guile \nintegration\n.\n\n\nThe GNU Make Toolkit implements many of the functions found in the excellent\n\nGNU Make Standard Library\n. The GMSL is well tested and runs on all\nversions of GNU Make since 3.80.\n\n\n\n\nWarning\n\n\nThe GNU Make Toolkit and this documentation are still a work in progress.\n\n\n\n\nUsage\n\u00b6\n\n\nDownload \ntoolkit.mk\n and include it in your makefile:\n\n\ninclude toolkit.mk\n\n\n\n# Example:\n\n\n$(\ncall\n \nstring\n-\njoin\n,;,\na\n \nb\n \nc\n)\n\n\n=>\n \na;b;c\n\n\n\n\n\n\nSee the \nReference\n page for a list of functions and helper targets.",
+            "title": "Introduction"
+        },
+        {
+            "location": "/#introduction",
+            "text": "The GNU Make Toolkit is a library of utility functions for  GNU Make  4.0  or newer. It provides useful functions for:   String manipulation  List manipulation   Most functions are implemented using GNU Make's Guile  integration .  The GNU Make Toolkit implements many of the functions found in the excellent GNU Make Standard Library . The GMSL is well tested and runs on all\nversions of GNU Make since 3.80.   Warning  The GNU Make Toolkit and this documentation are still a work in progress.",
+            "title": "Introduction"
+        },
+        {
+            "location": "/#usage",
+            "text": "Download  toolkit.mk  and include it in your makefile:  include toolkit.mk  # Example:  $( call   string - join ,;, a   b   c )  =>   a;b;c   See the  Reference  page for a list of functions and helper targets.",
+            "title": "Usage"
+        },
+        {
+            "location": "/ref/",
+            "text": "Function reference\n\u00b6\n\n\nList manipulation\n\u00b6\n\n\nrest(list)\n\u00b6\n\n\nReturns:\n List with the first element removed.\n\n\n$(\ncall\n \nrest\n,1 2 3 4\n)\n\n\n=>\n \n2\n \n3\n \n4\n\n\n\n\n\n\nchop(list)\n\u00b6\n\n\nReturns:\n List with the last element removed.\n\n\n$(\ncall\n \nchop\n,1 2 3 4\n)\n\n\n=>\n \n1\n \n2\n \n3\n\n\n\n\n\n\nleq(list1,list2)\n\u00b6\n\n\nReturns:\n \n#t\n if the two lists are identical, empty string otherwise\n\n\n$(\ncall\n \nleq\n,1 2 \na\n,1 2 \na\n)\n\n\n=>\n \n#t\n\n\n\n\n\n\nlne(list1,list2)\n\u00b6\n\n\nReturns:\n empty string if the two lists are identical, \n#t\n if they differ\n\n\n$(\ncall\n \nlne\n,1 2 \na\n,1 2 \nb\n)\n\n\n=>\n \n#t\n\n\n\n\n\n\nreverse(list)\n\u00b6\n\n\nReturns:\n reverse the order of elements in list\n\n\n$(\ncall\n \nreverse\n,1 2 \na\n)\n\n\n=>\n \na\n \n2\n \n1\n\n\n\n\n\n\nuniq(list)\n\u00b6\n\n\nReturns:\n list with all duplicate elements removed\n\n\n$(\ncall\n \nuniq\n,1 1 1 2 3 2 \na\n)\n\n\n=>\n \n1\n \n2\n \n3\n \na\n\n\n\n\n\n\nseq(string1,string2)\n\u00b6\n\n\nReturns:\n \n#t\n if the two strings are identical\n\n\n$(\ncall\n \nseq\n,123,123\n)\n\n\n=>\n \n#t\n\n\n\n\n\n\nsne(string1,string2)\n\u00b6\n\n\nReturns:\n \n#t\n if the two strings are not identical\n\n\n$(\ncall\n \nsne\n,123,456\n)\n\n\n=>\n \n#t\n\n\n\n\n\n\nString manipulation\n\u00b6\n\n\nstrlen(string)\n\u00b6\n\n\nReturns:\n the length of the supplied string\n\n\n$(\ncall\n \nstrlen\n,\naaabbb\n)\n\n\n=>\n \n6\n\n\n\n\n\n\nsubstr(string)\n\u00b6\n\n\nReturns:\n a substring\n\n\n$(\ncall\n \nstrlen\n,\naaabbb\n)\n\n\n=>\n \n6\n\n\n\n\n\n\nstring-join(string,list)\n\u00b6\n\n\nReturns:\n A string which is the concatenation of the elements in the list. The\nseparator between elements is configurable.\n\n\n$(\ncall\n \nstring\n-\njoin\n,!,\na\n \nb\n \nc\n)\n\n\n=>\n \na!b!c\n\n\n$(\ncall\n \nstring\n-\njoin\n,\n$$\n,\na\n \nb\n \nc\n)\n\n\n=>\n \n$a$b$c\n\n\n\n\n\n\nstring-upcase(string)\n\u00b6\n\n\nReturns:\n Returns the text in upper case\n\n\n$(\ncall\n \nstring\n-\nupcase\n,\nthe\n1 \nquick\n2 \nbrown\n3 \nfox\n4\n)\n\n\n=>\n \nTHE1\n \nQUICK2\n \nBROWN3\n \nFOX4\n\n\n\n\n\n\nstring-downcase(string)\n\u00b6\n\n\nReturns:\n Returns the text in lower case\n\n\n$(\ncall\n \nstring\n-\nupcase\n,\nTHE\n1 \nQUICK\n2 \nBROWN\n3 \nFOX\n4\n)\n\n\n=>\n \nthe1\n \nquick2\n \nbrown3\n \nfox4",
+            "title": "Reference"
+        },
+        {
+            "location": "/ref/#function-reference",
+            "text": "",
+            "title": "Function reference"
+        },
+        {
+            "location": "/ref/#list-manipulation",
+            "text": "",
+            "title": "List manipulation"
+        },
+        {
+            "location": "/ref/#restlist",
+            "text": "Returns:  List with the first element removed.  $( call   rest ,1 2 3 4 )  =>   2   3   4",
+            "title": "rest(list)"
+        },
+        {
+            "location": "/ref/#choplist",
+            "text": "Returns:  List with the last element removed.  $( call   chop ,1 2 3 4 )  =>   1   2   3",
+            "title": "chop(list)"
+        },
+        {
+            "location": "/ref/#leqlist1list2",
+            "text": "Returns:   #t  if the two lists are identical, empty string otherwise  $( call   leq ,1 2  a ,1 2  a )  =>   #t",
+            "title": "leq(list1,list2)"
+        },
+        {
+            "location": "/ref/#lnelist1list2",
+            "text": "Returns:  empty string if the two lists are identical,  #t  if they differ  $( call   lne ,1 2  a ,1 2  b )  =>   #t",
+            "title": "lne(list1,list2)"
+        },
+        {
+            "location": "/ref/#reverselist",
+            "text": "Returns:  reverse the order of elements in list  $( call   reverse ,1 2  a )  =>   a   2   1",
+            "title": "reverse(list)"
+        },
+        {
+            "location": "/ref/#uniqlist",
+            "text": "Returns:  list with all duplicate elements removed  $( call   uniq ,1 1 1 2 3 2  a )  =>   1   2   3   a",
+            "title": "uniq(list)"
+        },
+        {
+            "location": "/ref/#seqstring1string2",
+            "text": "Returns:   #t  if the two strings are identical  $( call   seq ,123,123 )  =>   #t",
+            "title": "seq(string1,string2)"
+        },
+        {
+            "location": "/ref/#snestring1string2",
+            "text": "Returns:   #t  if the two strings are not identical  $( call   sne ,123,456 )  =>   #t",
+            "title": "sne(string1,string2)"
+        },
+        {
+            "location": "/ref/#string-manipulation",
+            "text": "",
+            "title": "String manipulation"
+        },
+        {
+            "location": "/ref/#strlenstring",
+            "text": "Returns:  the length of the supplied string  $( call   strlen , aaabbb )  =>   6",
+            "title": "strlen(string)"
+        },
+        {
+            "location": "/ref/#substrstring",
+            "text": "Returns:  a substring  $( call   strlen , aaabbb )  =>   6",
+            "title": "substr(string)"
+        },
+        {
+            "location": "/ref/#string-joinstringlist",
+            "text": "Returns:  A string which is the concatenation of the elements in the list. The\nseparator between elements is configurable.  $( call   string - join ,!, a   b   c )  =>   a!b!c  $( call   string - join , $$ , a   b   c )  =>   $a$b$c",
+            "title": "string-join(string,list)"
+        },
+        {
+            "location": "/ref/#string-upcasestring",
+            "text": "Returns:  Returns the text in upper case  $( call   string - upcase , the 1  quick 2  brown 3  fox 4 )  =>   THE1   QUICK2   BROWN3   FOX4",
+            "title": "string-upcase(string)"
+        },
+        {
+            "location": "/ref/#string-downcasestring",
+            "text": "Returns:  Returns the text in lower case  $( call   string - upcase , THE 1  QUICK 2  BROWN 3  FOX 4 )  =>   the1   quick2   brown3   fox4",
+            "title": "string-downcase(string)"
+        },
+        {
+            "location": "/devel/",
+            "text": "Development\n\u00b6\n\n\nTo run the test suite and generate the documentation you need Python 3.\n\n\nSetup virtualenv\n\u00b6\n\n\npython3 -m vevn path/to/gmt-venv\n\nsource\n path/to/gmt-venv\n\n\n\n\n\nInstall dependencies\n\u00b6\n\n\ncd\n path/to/gnu-make-toolkit\nmake install-requirements\n\n\n\n\n\nRun tests\n\u00b6\n\n\nThe test suite uses \npy.test\n and some custom test fixtures (see\n\ntests/conftest.py\n and \ntests/make_runner.py\n).\n\n\nmake tests\n\n\n\n\n\nBuild documentation\n\u00b6\n\n\nThe documentation is generated using \nmkdocs\n. The docstrings are extracted from\n\ntoolkit.mk\n with the help of these two helper scripts:\n\n\n\n\n\n\ndocs/extract-toolkit-docs.py\n: Parses the docstrings in \ntoolkit.mk\n into \ndocs/docs.json\n.\n\n\n\n\n\n\ndocs/expand-toolkit-docs.py\n: Renders the \ndocs/docs/ref.tmpl.mk\n file to\n   \ndocs/docs/ref.mk\n (i.e the \nReference\n page).\n\n\n\n\n\n\nTo generate the docs:\n\n\nmake docs",
+            "title": "Development"
+        },
+        {
+            "location": "/devel/#development",
+            "text": "To run the test suite and generate the documentation you need Python 3.",
+            "title": "Development"
+        },
+        {
+            "location": "/devel/#setup-virtualenv",
+            "text": "python3 -m vevn path/to/gmt-venv source  path/to/gmt-venv",
+            "title": "Setup virtualenv"
+        },
+        {
+            "location": "/devel/#install-dependencies",
+            "text": "cd  path/to/gnu-make-toolkit\nmake install-requirements",
+            "title": "Install dependencies"
+        },
+        {
+            "location": "/devel/#run-tests",
+            "text": "The test suite uses  py.test  and some custom test fixtures (see tests/conftest.py  and  tests/make_runner.py ).  make tests",
+            "title": "Run tests"
+        },
+        {
+            "location": "/devel/#build-documentation",
+            "text": "The documentation is generated using  mkdocs . The docstrings are extracted from toolkit.mk  with the help of these two helper scripts:    docs/extract-toolkit-docs.py : Parses the docstrings in  toolkit.mk  into  docs/docs.json .    docs/expand-toolkit-docs.py : Renders the  docs/docs/ref.tmpl.mk  file to\n    docs/docs/ref.mk  (i.e the  Reference  page).    To generate the docs:  make docs",
+            "title": "Build documentation"
+        }
+    ]
+}
