@@ -1,9 +1,21 @@
 site_name: GNU Make Toolkit
 site_author: Georgi Valkov
-site_description: GNU Make Toolkit documentation
+site_description: GNU Make Toolkit Documentation
+
+repo_url: https://github.com/gvalkov/gnu-make-toolkit/
+copyright: Copyright &copy; 2017 Georgi Valkov
 pages:
-  - Home: index.md
-theme: readthedocs
+  - Introduction: index.md
+  - Reference: ref.md
+  - Development: devel.md
+theme: material
 markdown_extensions:
-  - toc:
-      permalink: True
+  - admonition
+  - codehilite(guess_lang=false)
+  - toc(permalink=true)
+extra:
+  palette:
+    primary: 'blue grey'
+    accent: 'light blue'
+  feature:
+    tabs: false
