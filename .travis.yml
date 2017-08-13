@@ -1,0 +1,12 @@
+language: python
+python:
+  - 3.6
+
+install:
+  - make test-requirements
+
+script:
+  - make tests
+
+notifications:
+  email: false
