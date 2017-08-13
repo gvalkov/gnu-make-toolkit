@@ -72,7 +72,7 @@ chop = $(guile (chop (quote ($1))))
 
 
 # --------------------------------------------------------------------------->
-# Function: leq(list1, list2)
+# Function: leq(list1,list2)
 # Returns:  #t if the two lists are identical, empty string otherwise
 # Example:
 #   $(call leq,1 2 a,1 2 a)
@@ -82,7 +82,7 @@ leq = $(guile (equal? (quote ($1)) (quote ($2))))
 
 
 # --------------------------------------------------------------------------->
-# Function: lne(list1, list2)
+# Function: lne(list1,list2)
 # Returns:  empty string if the two lists are identical, #t if they differ
 # Example:
 #   $(call lne,1 2 a,1 2 b)
@@ -155,9 +155,8 @@ strlen = $(guile (string-length "$1"))
 substr = $(guile (substring "$1" $2 $3))
 
 
-# >-------------------------------------------------------------------------->
-# Function:
-#   string-join
+# --------------------------------------------------------------------------->
+# Function: string-join(string,list)
 # Arguments:
 #   1: Character to put between fields.
 #   2: List to merge into a string.
@@ -165,39 +164,31 @@ substr = $(guile (substring "$1" $2 $3))
 #   A string which is the concatenation of the elements in the list. The
 #   separator between elements is configurable.
 # Example:
-#   (call string-join,!,a b c)
+#   $(call string-join,!,a b c)
 #   => a!b!c
-#   (call string-join,$$,a b c)
+#   $(call string-join,$$,a b c)
 #   => $a$b$c
-# <--------------------------------------------------------------------------<
+# ---------------------------------------------------------------------------<
 string-join = $(guile (string-join (map object->string (quote ($2))) "$1"))
 
 
-# >-------------------------------------------------------------------------->
-# Function:
-#   string-upcase uc
-# Arguments:
-#   1: String to upcase.
-# Returns:
-#   Returns the text in upper case
+# --------------------------------------------------------------------------->
+# Function: string-upcase(string)
+# Returns:  Returns the text in upper case
 # Example:
 #   $(call string-upcase,the1 quick2 brown3 fox4)
-#   => 'THE1 QUICK2 BROWN3 FOX4'
-# <--------------------------------------------------------------------------<
+#   => THE1 QUICK2 BROWN3 FOX4
+# ---------------------------------------------------------------------------<
 string-upcase = $(guile (string-upcase "$1"))
 
 
-# >-------------------------------------------------------------------------->
-# Function:
-#   string-downcase
-# Arguments:
-#   1: String to downcase.
-# Returns:
-#   Returns the text in lower case
+# --------------------------------------------------------------------------->
+# Function: string-downcase(string)
+# Returns:  Returns the text in lower case
 # Example:
-#   $(call string-upcase,the1 quick2 brown3 fox4)
-#   => 'THE1 QUICK2 BROWN3 FOX4'
-# <--------------------------------------------------------------------------<
+#   $(call string-upcase,THE1 QUICK2 BROWN3 FOX4)
+#   => the1 quick2 brown3 fox4
+# ---------------------------------------------------------------------------<
 string-downcase = $(guile (string-downcase "$1"))
 
 
@@ -206,16 +197,3 @@ string-downcase = $(guile (string-downcase "$1"))
 # ----------------------------------------------------------------------------
 
 gmt-print-%: ; @echo $* = $($*)
-
-
-# >-------------------------------------------------------------------------->
-# Function:
-#   assert-file-exists
-# Arguments:
-#   1: String to downcase.
-# Returns:
-#   Returns the text in lower case
-# Example:
-#   $(call string-upcase,the1 quick2 brown3 fox4)
-#   => 'THE1 QUICK2 BROWN3 FOX4'
-# <--------------------------------------------------------------------------<
