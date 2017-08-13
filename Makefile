@@ -20,7 +20,7 @@ test-requirements:
 	$(PYTHON) -m pip install pytest pytest-xdist
 
 doc-requirements:
-	$(PYTHON) -m pip install mkdocs mkdocs-material pygments pymdown-extensions
+	$(PYTHON) -m pip install -r docs/requirements.txt
 
 install-requirements: test-requirements doc-requirements
 
