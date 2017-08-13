@@ -1,7 +1,6 @@
 # Project files
 docs/docs.json
 docs/site
-docs/docs/ref.md
 
 # Python files
 .cache
